@@ -1,15 +1,16 @@
 // COMPONENTS
-import { Input } from "./components";
+import { AddTimer, Header, Timers } from "./components";
 
 function App() {
   return (
-    <main>
-      <Input id="name" label="Your Name" />
-      <Input id="age" label="Your Age" />
-    </main>
+    <>
+      <Header />
+      <main>
+        <AddTimer />
+        <Timers />
+      </main>
+    </>
   );
 }
 
 export default App;
-
-// 4 - 51
