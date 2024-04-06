@@ -5,13 +5,15 @@ import { Button } from "../ui";
 import { useTimersContext } from "../contexts";
 
 function Header() {
-  const { isRunning } = useTimersContext();
+  const { isRunning, startTimers, stopTimers } = useTimersContext();
 
   return (
     <header>
       <h1>ReactTimer</h1>
 
-      <Button>{isRunning ? "Stop" : "Start "} Timers</Button>
+      <Button onClick={isRunning ? stopTimers : startTimers}>
+        {isRunning ? "Stop" : "Start "} Timers
+      </Button>
     </header>
   );
 }
