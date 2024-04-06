@@ -1,12 +1,17 @@
 // UI COMPONENTS
 import { Button } from "../ui";
 
+// CONTEXTS
+import { useTimersContext } from "../contexts";
+
 function Header() {
+  const { isRunning } = useTimersContext();
+
   return (
     <header>
       <h1>ReactTimer</h1>
 
-      <Button>Stop Timers</Button>
+      <Button>{isRunning ? "Stop" : "Start "} Timers</Button>
     </header>
   );
 }
