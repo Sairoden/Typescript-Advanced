@@ -16,10 +16,14 @@ function Timer({ name, duration }: TimerProps) {
   const [remainingTime, setRemainingTime] = useState(time);
 
   useEffect(() => {
-    setInterval(() => {
+    const timer = setInterval(() => {
       setRemainingTime(prevRemainingTime => prevRemainingTime - interval);
     }, interval);
-  }, []);
+
+    if (remainingTime <= 0) clearInterval(timer);
+
+    return () => clearInterval(timer);
+  }, [remainingTime]);
 
   const formattedRemainingTime = (remainingTime / 1000).toFixed(2);
 
