@@ -14,13 +14,13 @@ function AddTimer() {
   const form = useRef<FormHandle>(null);
 
   function handleSaveTimer(data: unknown) {
-    const extractedData = data as { name: string; duration: string };
+    const { name, duration } = data as { name: string; duration: string };
 
-    console.log(extractedData);
+    if (!name || !duration) return;
 
     addTimer({
-      name: extractedData.name,
-      duration: +extractedData.duration,
+      name,
+      duration: +duration,
     });
 
     form.current?.clear();
