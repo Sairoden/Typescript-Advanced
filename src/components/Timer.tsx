@@ -7,23 +7,26 @@ import { Container } from "../ui";
 type TimerProps = {
   name: string;
   duration: number;
+  isRunning: boolean;
 };
 
-function Timer({ name, duration }: TimerProps) {
+function Timer({ name, duration, isRunning }: TimerProps) {
   const interval: number = 50;
   const time: number = duration * 1000;
 
   const [remainingTime, setRemainingTime] = useState(time);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setRemainingTime(prevRemainingTime => prevRemainingTime - interval);
-    }, interval);
+    if (isRunning) {
+      const timer = setInterval(() => {
+        setRemainingTime(prevRemainingTime => prevRemainingTime - interval);
+      }, interval);
 
-    if (remainingTime <= 0) clearInterval(timer);
+      if (remainingTime <= 0) clearInterval(timer);
 
-    return () => clearInterval(timer);
-  }, [remainingTime]);
+      return () => clearInterval(timer);
+    }
+  }, [remainingTime, isRunning]);
 
   const formattedRemainingTime = (remainingTime / 1000).toFixed(2);
 

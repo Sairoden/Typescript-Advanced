@@ -5,12 +5,12 @@ import { Timer } from "./index";
 import { useTimersContext } from "../contexts";
 
 function Timers() {
-  const { timers } = useTimersContext();
+  const { timers, isRunning } = useTimersContext();
 
   return (
     <ul>
       {timers.map(timer => (
-        <Timer key={timer.name} {...timer} />
+        <Timer key={timer.name} {...timer} isRunning={isRunning} />
       ))}
     </ul>
   );
